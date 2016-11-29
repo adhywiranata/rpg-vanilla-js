@@ -40,6 +40,28 @@
   left: 22%;
 }
 
+#dakunes-char {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+}
+
+#wyvern-action {
+  position: fixed;
+  right: 10%;
+  top: 120px;
+  background: rgba(0,0,0, .8);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 2em;
+  width: 500px;
+  text-align: center;
+}
+
+#wyvern-action span {
+  vertical-align: 10px;
+}
+
 #wyvern-char {
   right: 5%;
   bottom: 100px;
@@ -72,7 +94,7 @@
   top: 30%;
   width: 100%;
   height: 250px;
-  background: url('../images/final-move.jpg');
+  background: url('../assets/images/final-move.jpg');
   background-size: cover;
   background-position: 10% 40%;
   opacity: 0.9;
@@ -113,6 +135,32 @@
   background: #3A539B;
 }
 
+.menu-actions button:disabled {
+  background: #444;
+}
+
 .action-run-out {
   background: #444 !important;
+}
+
+.wyvern-damage{
+  display: none;
+  position: fixed;
+  top: 250px;
+  font-size: 3em;
+  color: white;
+  right: 200;
+  opacity: 0.9;
+}
+
+#megumin-to-wyvern-damage {
+  top: 200px;
+}
+
+#aqua-to-wyvern-damage {
+  top: 250px;
+}
+
+#kazuma-to-wyvern-damage {
+  top: 300px;
 }
