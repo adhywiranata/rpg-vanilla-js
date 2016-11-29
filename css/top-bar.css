@@ -1,0 +1,52 @@
+
+#game-top-bar .character-stat {
+  width: 250px;
+  float: left;
+}
+
+#game-top-bar {
+  position: fixed;
+  top: 0;
+  width: 1960px;
+  height: 100px;
+  background: #353535;
+  color: white;
+}
+
+#game-top-bar h4 {
+  font-weight: normal;
+}
+
+#game-top-bar span {
+  float: left;
+}
+
+.hp-bar {
+  width: 120px;
+  background: #3FC380;
+  border-radius: 8px;
+  height: 10px;
+  margin-top: -15px;
+  margin-bottom: 5px;
+}
+
+.boss-hp-bar {
+  width: 220px;
+  background: #3FC380;
+  border-radius: 8px;
+  height: 10px;
+  margin-top: -15px;
+  margin-bottom: 5px;
+}
+
+.character-avatar {
+  height: 80px;
+  margin: 10px;
+  float: left;
+}
+
+#game-top-bar .boss-stat {
+  width: 350px;
+  position: fixed;
+  right: 0;
+}

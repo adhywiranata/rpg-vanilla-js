@@ -1,0 +1,118 @@
+#game-menu-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  background: rgba(0,0,0, 1);
+  padding-top: 3px;
+}
+
+.character-in-game {
+  position: fixed;
+  bottom: 0px;
+  height: 380px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+}
+
+.character-in-game:hover {
+  position: fixed;
+  bottom: 10px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+}
+
+#kazuma-char {
+  left: 45%;
+}
+
+#megumin-char {
+  left: 5%;
+}
+
+#aqua-char {
+  left: 22%;
+}
+
+#wyvern-char {
+  right: 5%;
+  bottom: 100px;
+}
+
+#pow-sfx {
+  position: fixed;
+  display: none;
+  right: 13%;
+  bottom: 200px;
+}
+
+#pow-sfx-2 {
+  position: fixed;
+  display: none;
+  right: 10%;
+  bottom: 300px;
+}
+
+#pow-sfx-3 {
+  position: fixed;
+  display: none;
+  right: 20%;
+  bottom: 200px;
+}
+
+#final-move {
+  display: none;
+  position: fixed;
+  top: 30%;
+  width: 100%;
+  height: 250px;
+  background: url('../images/final-move.jpg');
+  background-size: cover;
+  background-position: 10% 40%;
+  opacity: 0.9;
+  transition: 0.5s;
+}
+
+.menu-actions {
+  width: 250px;
+  height: 100%;
+  float: left;
+  margin: 0 5px;
+}
+
+.menu-actions h3 {
+  margin-top: -40px;
+  color: white;
+  background: rgba(0,0,0, .5);
+  padding: 5px 20px;
+  text-align: center;
+  border-radius: 5px;
+  border-top-right-radius: 20px;
+}
+
+.menu-actions button {
+  margin: 3px 10px;
+  width: 100%;
+  background: #446CB3;
+  color: #fff;
+  font-size: 1em;
+  border: 0;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.menu-actions button:hover {
+  background: #3A539B;
+}
+
+.action-run-out {
+  background: #444 !important;
+}

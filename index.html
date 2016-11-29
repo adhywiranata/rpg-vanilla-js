@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/top-bar.css" rel="stylesheet" />
+    <link href="css/game-bar.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="main-screen">
+      <img id="megumin" src="images/megumiin.png">
+    </div>
+    <div id="game-screen">
+
+      <img id="wyvern-char" class="character-in-game" src="images/wyvern.png">
+
+      <img id="kazuma-char" class="character-in-game" src="images/Kazuma-anime.png">
+      <img id="megumin-char" class="character-in-game" src="images/Megumin-anime.png">
+      <img id="aqua-char" class="character-in-game" src="images/Aqua-anime.png">
+      <img id="pow-sfx" class="sfx-image" src="images/pow.png" height="100px">
+      <img id="pow-sfx-2" class="sfx-image" src="images/pow.png" height="100px">
+      <img id="pow-sfx-3" class="sfx-image" src="images/pow.png" height="100px">
+
+      <div id="game-top-bar">
+
+        <div id="final-move"></div>
+
+        <div class="character-stat">
+          <img class="character-avatar" src="images/megumin-thumb.png">
+          <span>
+            <h4>MEGUMIN</h4>
+            <div class="hp-bar"></div>
+            <span>100 / 200</span>
+          </span>
+        </div>
+        <div class="character-stat">
+          <img class="character-avatar" src="images/aqua-thumb.png">
+          <span>
+            <h4>AQUA</h4>
+            <div class="hp-bar"></div>
+            <span>100 / 200</span>
+          </span>
+        </div>
+        <div class="character-stat">
+          <img class="character-avatar" src="images/kazuma-thumb.png">
+          <span>
+            <h4>KAZUMA</h4>
+            <div class="hp-bar"></div>
+            <span>100 / 200</span>
+          </span>
+        </div>
+
+        <div class="boss-stat">
+          <span>
+            <h4>WYVERN FURY</h4>
+            <div class="boss-hp-bar"></div>
+            <span>100 / 200</span>
+          </span>
+          <img class="character-avatar" src="images/wyvern-thumb.png">
+        </div>
+      </div>
+
+      <div id="game-menu-bar">
+        <div id="megumin-menu" class="menu-actions">
+          <h3>Megumin</h3>
+          <button id="action-hit">Hit</button>
+          <button id="action-explosion">Explosion (Usage: 3/3)</button>
+          <button id="action-mega-blast">Mega Blast (Usage: 1/1)</button>
+        </div>
+
+        <div id="aqua-menu" class="menu-actions">
+          <h3>Aqua</h3>
+          <button id="action-smack">Smack</button>
+          <button id="action-heal">Heal (Usage: 5/5)</button>
+        </div>
+
+        <div id="aqua-menu" class="menu-actions">
+          <h3>Kazuma</h3>
+          <button id="action-stab">Stab</button>
+          <button id="action-steal" class="action-run-out">Steal HP (Usage: 5/5)</button>
+        </div>
+      </div>
+    </div>
+    <script src="js/actions.js"></script>
+  </body>
+</html>
