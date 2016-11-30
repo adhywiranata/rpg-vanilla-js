@@ -18,6 +18,8 @@ var healSoundAudio      = document.getElementById('heal-sound');
 var roarSoundAudio      = document.getElementById('roar-sound');
 var stabSoundAudio      = document.getElementById('stab-sound');
 
+roarSoundAudio.volume = 0.5;
+
 // Damage DOM
 var meguminToWyvernDamageH5 = document.getElementById('megumin-to-wyvern-damage');
 var aquaToWyvernDamageH5    = document.getElementById('aqua-to-wyvern-damage');
@@ -179,26 +181,36 @@ actionStabBtn.addEventListener('click', function() {
 var wyvernActionCommand = document.getElementById('wyvern-action');
 wyvernActionCommand.style.display = 'none';
 
-// Wyvern - Ancient Hellfire
-function wyvernAncientHellfire() {
+// Wyvern - Dark Claw
+function wyvernDarkClaw() {
   setTimeout(function() {
     roarSoundAudio.play();
     wyvernActionCommand.style.display = 'block';
     var randomTarget = Math.floor((Math.random() * 3) + 1);
     var targetCharImg = '';
     switch( randomTarget) {
-      case 1: targetCharImg = kazumaCharImg; break;
-      case 2: targetCharImg = aquaCharImg; break;
-      case 3: targetCharImg = meguminCharImg; break;
+      case 1:
+        targetCharImg = kazumaCharImg;
+        kazumaObj.dealDamage(wyvernObj.damageModifier.darkClaw);
+        break;
+      case 2:
+        targetCharImg = aquaCharImg;
+        aquaObj.dealDamage(wyvernObj.damageModifier.darkClaw);
+        break;
+      case 3:
+        targetCharImg = meguminCharImg;
+        meguminObj.dealDamage(wyvernObj.damageModifier.darkClaw); 
+        break;
     }
+
     targetCharImg.style.opacity = 0.5;
 
     setTimeout(function() {
       wyvernActionCommand.style.display = 'none';
       targetCharImg.style.opacity = 1;
-      wyvernAncientHellfire();
+      wyvernDarkClaw();
     }, 2000);
   }, 2000);
 };
 
-wyvernAncientHellfire();
+wyvernDarkClaw();
