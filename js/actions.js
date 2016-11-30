@@ -119,7 +119,9 @@ actionExplosionBtn.addEventListener('click', function() {
   actionExplosionBtn.disabled = true;
 
   setTimeout(function() {
-    actionExplosionBtn.disabled = false;
+    if(meguminObj.hp > 0) {
+      actionExplosionBtn.disabled = false;
+    }
   }, 5000);
 
   // Damage Inflicted Display
@@ -144,13 +146,15 @@ actionMegaBlastBtn.addEventListener('click', function() {
 
   actionMegaBlastBtn.disabled = true;
 
-  setTimeout(function(){
+  setTimeout(function() {
     megaBlastImage.style.display  = 'none';
   }, 1000);
 
-  setTimeout(function(){
-    actionMegaBlastBtn.disabled = false;
-  }, 10000);
+  setTimeout(function() {
+    if(meguminObj.hp > 0) {
+      actionMegaBlastBtn.disabled = false;
+    }
+  }, 15000);
 
   // Damage Inflicted Display
   meguminToWyvernDamageH5.innerHTML = damageConfig.megumin.megaBlast;
@@ -184,7 +188,9 @@ actionSmackBtn.addEventListener('click', function() {
   actionSmackBtn.disabled = true;
 
   setTimeout(function(){
-    actionSmackBtn.disabled = false;
+    if(aquaObj.hp > 0) {
+      actionSmackBtn.disabled = false;
+    }
   }, 3000);
 
   // Damage Inflicted Display
@@ -231,7 +237,9 @@ actionHealBtn.addEventListener('click', function() {
   }, 500);
 
   setTimeout(function(){
-    actionHealBtn.disabled = false;
+    if(aquaObj.hp > 0) {
+      actionHealBtn.disabled = false;
+    }
   }, 10000);
 });
 
@@ -279,7 +287,9 @@ actionStabBtn.addEventListener('click', function() {
   actionStabBtn.disabled = true;
 
   setTimeout(function(){
-    actionStabBtn.disabled = false;
+    if(kazumaObj.hp > 0) {
+      actionStabBtn.disabled = false;
+    }
   }, 3000);
 
   // Damage Inflicted Display
@@ -289,6 +299,40 @@ actionStabBtn.addEventListener('click', function() {
   setTimeout(function() {
     kazumaToWyvernDamageH5.style.display = 0;
     kazumaToWyvernDamageH5.style.display = 'none';
+  }, 500);
+});
+
+// Kazuma - Steal
+var actionStealBtn = document.getElementById('action-steal');
+actionStealBtn.addEventListener('click', function() {
+  wyvernObj.dealDamage(damageConfig.kazuma.stealHp);
+  kazumaObj.dealDamage(-1 * damageConfig.kazuma.stealHp);
+  stabSoundAudio.play();
+  kazumaDoActionEffect();
+
+  actionStealBtn.disabled = true;
+
+  setTimeout(function(){
+    if(kazumaObj.hp > 0) {
+      actionStealBtn.disabled = false;
+    }
+  }, 8000);
+
+  // Damage Inflicted Display
+  kazumaToWyvernDamageH5.innerHTML = damageConfig.kazuma.stealHp;
+  kazumaToWyvernDamageH5.style.display = 'block';
+
+  // Kazuma Healing Effect
+  toKazumaDamageH5.style.display = 'block';
+  toKazumaDamageH5.style.color = '#26C281';
+  toKazumaDamageH5.innerHTML = damageConfig.kazuma.stealHp;
+
+  setTimeout(function() {
+    kazumaToWyvernDamageH5.style.display = 0;
+    kazumaToWyvernDamageH5.style.display = 'none';
+
+    toKazumaDamageH5.style.display = 'none';
+    toKazumaDamageH5.style.color = '#FFF';
   }, 500);
 });
 
@@ -318,11 +362,20 @@ wyvernActionCommand.style.display = 'none';
 var wyvernActionMove = document.getElementById('wyvern-action-move');
 
 function wyvernMovesFunc() {
+
+  if(kazumaObj.hp <= 0 && meguminObj.hp <= 0 && aquaObj.hp <= 0){
+    return false;
+  }
+  if(wyvernObj.hp <= 0){
+    return false;
+  }
+
   setTimeout(function() {
 
-    var randomMove = Math.floor((Math.random() * 3) + 1);
+    var randomMove = Math.floor((Math.random() * 6) + 1);
     var damageModifier = 0;
     var actionMove = '';
+    var attackToAll = false;
 
     switch(randomMove) {
       case 1:
@@ -337,6 +390,29 @@ function wyvernMovesFunc() {
         break;
       case 3:
         roarSoundAudio.play();
+        damageModifier = wyvernObj.damageModifier.blackMiasma;
+        actionMove = wyvernObj.actionMove.blackMiasma;
+        attackToAll = true;
+        actionStabBtn.disabled = true;
+        actionSmackBtn.disabled = true;
+        actionExplosionBtn.disabled = true;
+        actionMegaBlastBtn.disabled = true;
+        actionHealBtn.disabled = true;
+        actionStealBtn.disabled = true;
+        break;
+      case 4:
+        roarSoundAudio.play();
+        damageModifier = wyvernObj.damageModifier.ancientHellfire;
+        actionMove = wyvernObj.actionMove.ancientHellfire;
+        attackToAll = true;
+        break;
+      case 5:
+        roarSoundAudio.play();
+        damageModifier = wyvernObj.damageModifier.darkClaw;
+        actionMove = wyvernObj.actionMove.darkClaw;
+        break;
+      case 6:
+        roarSoundAudio.play();
         damageModifier = wyvernObj.damageModifier.wingFlap;
         actionMove = wyvernObj.actionMove.wingFlap;
         break;
@@ -345,34 +421,80 @@ function wyvernMovesFunc() {
     wyvernActionMove.innerHTML = actionMove;
 
     wyvernActionCommand.style.display = 'block';
-    var randomTarget = Math.floor((Math.random() * 3) + 1);
-    var targetCharImg = '';
-    switch(randomTarget) {
-      case 1:
-        targetCharImg = kazumaCharImg;
-        targetCharThumbImg = kazumaThumbImg;
-        toKazumaDamageH5.style.display = 'block';
-        toKazumaDamageH5.innerHTML = damageModifier;
-        kazumaObj.dealDamage(damageModifier);
-        break;
-      case 2:
-        targetCharImg = aquaCharImg;
-        targetCharThumbImg = aquaThumbImg;
-        toAquaDamageH5.style.display = 'block';
-        toAquaDamageH5.innerHTML = damageModifier;
-        aquaObj.dealDamage(damageModifier);
-        break;
-      case 3:
-        targetCharImg = meguminCharImg;
-        targetCharThumbImg = meguminThumbImg;
-        toMeguminDamageH5.style.display = 'block';
-        toMeguminDamageH5.innerHTML = damageModifier;
-        meguminObj.dealDamage(damageModifier);
-        break;
-    }
 
-    targetCharThumbImg.style.opacity = 0.5;
-    targetCharThumbImg.style.zoom = 0.8;
+
+    if(attackToAll === true) {
+      // Default Target
+      targetCharImg = kazumaCharImg;
+      targetCharThumbImg = kazumaThumbImg;
+      targetCharThumbImg.style.opacity = 0.5;
+      targetCharThumbImg.style.zoom = 0.8;
+
+      toKazumaDamageH5.style.display = 'block';
+      toKazumaDamageH5.innerHTML = damageModifier;
+      kazumaObj.dealDamage(damageModifier);
+
+      targetCharImg = aquaCharImg;
+      targetCharThumbImg = aquaThumbImg;
+      targetCharThumbImg.style.opacity = 0.5;
+      targetCharThumbImg.style.zoom = 0.8;
+
+      toAquaDamageH5.style.display = 'block';
+      toAquaDamageH5.innerHTML = damageModifier;
+      aquaObj.dealDamage(damageModifier);
+
+      targetCharImg = meguminCharImg;
+      targetCharThumbImg = meguminThumbImg;
+      targetCharThumbImg.style.opacity = 0.5;
+      targetCharThumbImg.style.zoom = 0.8;
+
+      toMeguminDamageH5.style.display = 'block';
+      toMeguminDamageH5.innerHTML = damageModifier;
+      meguminObj.dealDamage(damageModifier);
+    }
+    else {
+    // 1 is Kazuma, 2 is Aqua, 3 is Megumin
+      var aliveArr = [];
+      if(kazumaObj.hp > 0) {
+        aliveArr.push(1);
+      }
+      if(aquaObj.hp > 0) {
+        aliveArr.push(2);
+      }
+      if(meguminObj.hp > 0) {
+        aliveArr.push(3);
+      }
+      var randomIndex = Math.floor((Math.random() * aliveArr.length));
+      var randomTarget = aliveArr[randomIndex];
+
+      var targetCharImg = '';
+      switch(randomTarget) {
+        case 1:
+          targetCharImg = kazumaCharImg;
+          targetCharThumbImg = kazumaThumbImg;
+          toKazumaDamageH5.style.display = 'block';
+          toKazumaDamageH5.innerHTML = damageModifier;
+          kazumaObj.dealDamage(damageModifier);
+          break;
+        case 2:
+          targetCharImg = aquaCharImg;
+          targetCharThumbImg = aquaThumbImg;
+          toAquaDamageH5.style.display = 'block';
+          toAquaDamageH5.innerHTML = damageModifier;
+          aquaObj.dealDamage(damageModifier);
+          break;
+        case 3:
+          targetCharImg = meguminCharImg;
+          targetCharThumbImg = meguminThumbImg;
+          toMeguminDamageH5.style.display = 'block';
+          toMeguminDamageH5.innerHTML = damageModifier;
+          meguminObj.dealDamage(damageModifier);
+          break;
+      }
+
+      targetCharThumbImg.style.opacity = 0.5;
+      targetCharThumbImg.style.zoom = 0.8;
+    } // END of AttackToAll condition
 
     setTimeout(function() {
       targetCharThumbImg.style.opacity = 1;

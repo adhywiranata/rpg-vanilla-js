@@ -109,7 +109,7 @@
         <div id="aqua-menu" class="menu-actions">
           <h3>Kazuma</h3>
           <button id="action-stab">Stab </button>
-          <button id="action-steal" class="action-run-out">Steal HP</button>
+          <button id="action-steal">Steal HP</button>
           <button id="action-dakunes-shield">Dakunes' Shield (1 Time)</button>
         </div>
       </div>
@@ -118,6 +118,17 @@
 
     <div id="tutorial-screen">
     </div>
+
+    <div id="win-screen">
+      <h1 style="text-align: center; font-size: 4em;">YOU WIN!</h1>
+      <button class="playButton" onclick="location.reload()">Play Again</button>
+    </div>
+
+    <div id="lose-screen">
+      <h1 style="text-align: center; font-size: 4em;">GAME OVER</h1>
+      <button class="playButton" onclick="location.reload()">Play Again</button>
+    </div>
+
     <div id="tutorial-real-screen">
       <div id="tutorial-scrollable">
         <h1>Fantasy World: The Dark King</h1>
@@ -163,7 +174,7 @@
               <h4>Kazuma Skills</h4>
               <ul>
                 <li>Stab: Deal moderate damage to the enemy</li>
-                <li>Heal: Deal moderate damage to the enemy and heal himself</li>
+                <li>Heal: Deal moderate damage to the enemy and heal himself.</li>
                 <li>Dakunes' Shield: All party members cannot be damaged for 10 seconds</li>
               </ul>
             </li>
@@ -176,6 +187,14 @@
 
     <audio id="intro-bgm" autoplay loop>
       <source src="assets/sounds/320-reviving-hollow-bastion.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="lose-bgm" loop>
+      <source src="assets/sounds/301-dearly-beloved.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="win-bgm" loop>
+      <source src="assets/sounds/314-sora.mp3" type="audio/mp3">
     </audio>
 
     <audio id="battle-bgm" loop>

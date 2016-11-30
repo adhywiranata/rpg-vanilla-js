@@ -1,5 +1,5 @@
 var gameConfig = {
-  wyvernMaxHp: 5000,
+  wyvernMaxHp: 15000,
   wyvernDefense: 1, // damage will be divided by defense!
   wyvernSpeed: 1, // setTimeout will be divided by speed!
   kazumaMaxHp: 800,
@@ -11,8 +11,8 @@ var damageConfig = {
   wyvern: {
     darkClaw: 100,
     wingFlap: 50,
-    blackMiasma: 30,
-    ancientHellfire: 200,
+    blackMiasma: 10,
+    ancientHellfire: 50,
   },
   kazuma: {
     stab: 150,
@@ -21,7 +21,7 @@ var damageConfig = {
   aqua: {
     smack: 80,
     heal: 100,
-    salvation: 1000,
+    salvation: 99999,
   },
   megumin: {
     explosion: 300,

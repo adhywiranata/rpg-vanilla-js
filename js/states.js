@@ -10,12 +10,16 @@ var wyvernObj = {
   hpBar: 250,
   fullHpBar: 250,
   damageModifier: {
-    darkClaw: 100,
-    wingFlap: 50,
+    darkClaw: damageConfig.wyvern.darkClaw,
+    wingFlap: damageConfig.wyvern.wingFlap,
+    blackMiasma: damageConfig.wyvern.blackMiasma,
+    ancientHellfire: damageConfig.wyvern.ancientHellfire,
   },
   actionMove: {
     darkClaw: 'Dark Claw',
     wingFlap: 'Wing Flap',
+    blackMiasma: 'Black Miasma',
+    ancientHellfire: 'Ancient Hellfire',
   },
   dealDamage: function(damage) {
     // amount of damage inflicted
@@ -24,6 +28,12 @@ var wyvernObj = {
     this.hp = this.hp - damage;
     if(this.hp <= 0) {
       this.hp = 0;
+      setTimeout(function() {
+        document.getElementById('battle-bgm').pause();
+        document.getElementById('win-bgm').play();
+        document.getElementById('tutorial-screen').style.display = 'block';
+        document.getElementById('win-screen').style.display = 'block';
+      }, 2000);
     }
     // TRANSFORM
     if(this.hp < (this.maxHp / 2)) {
@@ -59,7 +69,12 @@ var kazumaObj = {
   maxHp: gameConfig.kazumaMaxHp,
   hpBar: 150,
   fullHpBar: 150,
+  isDead: false,
   dealDamage: function(damage) {
+    if(this.hp <= 0) {
+      if(damage !== -99999) // IF damage is not -99999 = is not used by Salvation!
+      return false;
+    }
     this.hp = this.hp - damage;
     if(this.hp >= gameConfig.kazumaMaxHp) {
       this.hp = gameConfig.kazumaMaxHp;
@@ -67,10 +82,35 @@ var kazumaObj = {
     if(this.hp <= 0) {
       this.hp = 0;
       kazumaHp.style.color = '#D91E18';
+
+      // Is Dead
+      this.isDead = true;
+      document.getElementById('action-stab').disabled = true;
+      document.getElementById('action-steal').disabled = true;
+      document.getElementById('action-dakunes-shield').disabled = true;
+
+      // Lose if all team is dead
+      if(kazumaObj.hp <= 0 && meguminObj.hp <= 0 && aquaObj.hp <= 0) {
+        setTimeout(function() {
+          document.getElementById('battle-bgm').pause();
+          document.getElementById('lose-bgm').play();
+          document.getElementById('tutorial-screen').style.display = 'block';
+          document.getElementById('lose-screen').style.display = 'block';
+        }, 100);
+      }
     }
     else {
       kazumaHp.style.color = '#FFFFFF';
     }
+
+    // Is Dead but Healed!
+    if(this.isDead === true && this.hp > 0) {
+      document.getElementById('action-stab').disabled = false;
+      document.getElementById('action-steal').disabled = false;
+      document.getElementById('action-dakunes-shield').disabled = false;
+      this.isDead = false;
+    }
+
     kazumaHp.innerHTML = this.hp;
 
     var damagePercentage = damage / this.maxHp;
@@ -106,6 +146,7 @@ var aquaObj = {
   maxHp: gameConfig.aquaMaxHp,
   hpBar: 150,
   fullHpBar: 150,
+  isDead: false,
   dealDamage: function(damage) {
     this.hp = this.hp - damage;
     if(this.hp >= gameConfig.aquaMaxHp) {
@@ -114,6 +155,21 @@ var aquaObj = {
     if(this.hp <= 0) {
       this.hp = 0;
       aquaHp.style.color = '#D91E18';
+
+      // Is Dead
+      this.isDead = true;
+      document.getElementById('action-heal').disabled = true;
+      document.getElementById('action-salvation').disabled = true;
+      document.getElementById('action-smack').disabled = true;
+
+      if(kazumaObj.hp <= 0 && meguminObj.hp <= 0 && aquaObj.hp <= 0) {
+        setTimeout(function() {
+          document.getElementById('battle-bgm').pause();
+          document.getElementById('lose-bgm').play();
+          document.getElementById('tutorial-screen').style.display = 'block';
+          document.getElementById('lose-screen').style.display = 'block';
+        }, 100);
+      }
     }
     else {
       aquaHp.style.color = '#FFFFFF';
@@ -152,7 +208,12 @@ var meguminObj = {
   maxHp: gameConfig.meguminMaxHp,
   hpBar: 150,
   fullHpBar: 150,
+  isDead: false,
   dealDamage: function(damage) {
+    if(this.hp <= 0) {
+      if(damage !== -99999) // IF damage is not -99999 = is not used by Salvation!
+      return false;
+    }
     this.hp = this.hp - damage;
     if(this.hp >= gameConfig.meguminMaxHp) {
       this.hp = gameConfig.meguminMaxHp;
@@ -160,10 +221,34 @@ var meguminObj = {
     if(this.hp <= 0) {
       this.hp = 0;
       meguminHp.style.color = '#D91E18';
+
+      // Is Dead
+      this.isDead = true;
+      document.getElementById('action-explosion').disabled = true;
+      document.getElementById('action-mega-blast').disabled = true;
+      document.getElementById('action-mana-recharge').disabled = true;
+
+      if(kazumaObj.hp <= 0 && meguminObj.hp <= 0 && aquaObj.hp <= 0) {
+        setTimeout(function() {
+          document.getElementById('battle-bgm').pause();
+          document.getElementById('lose-bgm').play();
+          document.getElementById('tutorial-screen').style.display = 'block';
+          document.getElementById('lose-screen').style.display = 'block';
+        }, 100);
+      }
     }
     else {
       meguminHp.style.color = '#FFFFFF';
     }
+
+    // Is Dead but Healed!
+    if(this.isDead === true && this.hp > 0) {
+      document.getElementById('action-explosion').disabled = false;
+      document.getElementById('action-mega-blast').disabled = false;
+      document.getElementById('action-mana-recharge').disabled = false;
+      this.isDead = false;
+    }
+
     meguminHp.innerHTML = this.hp;
 
     var damagePercentage = damage / this.maxHp;

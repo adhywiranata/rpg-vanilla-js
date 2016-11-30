@@ -24,7 +24,7 @@ body {
   opacity: 0.9;
 }
 
-#tutorial-real-screen {
+#tutorial-real-screen, #win-screen, #lose-screen {
   font-family: 'Roboto Slab', serif;
   position: fixed;
   width: 90%;
@@ -34,6 +34,10 @@ body {
   padding: 20px 50px;
   font-size: 1.2em;
   color: #353535;
+}
+
+#win-screen, #lose-screen {
+  display: none;
 }
 
 #tutorial-scrollable {
