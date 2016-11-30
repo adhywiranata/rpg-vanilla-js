@@ -15,6 +15,8 @@ var powSfx2Img  = document.getElementById('pow-sfx-2');
 var powSfx3Img  = document.getElementById('pow-sfx-3');
 
 // Audio DOM
+var introBGMAudio       = document.getElementById('intro-bgm');
+var battleBGMAudio      = document.getElementById('battle-bgm');
 var hitSoundAudio       = document.getElementById('hit-sound');
 var bombSoundAudio      = document.getElementById('bomb-sound');
 var explodeSoundAudio   = document.getElementById('explode-sound');
@@ -388,4 +390,15 @@ function wyvernMovesFunc() {
   }, (2000 / wyvernObj.speed));
 }
 
-wyvernMovesFunc();
+var playGame = document.getElementById('play-game');
+playGame.addEventListener('click', function() {
+  document.getElementById('tutorial-screen').style.display = 'none';
+  document.getElementById('tutorial-real-screen').style.display = 'none';
+  introBGMAudio.pause();
+  setTimeout(function() {
+    battleBGMAudio.play();
+  }, 1000);
+  setTimeout(function() {
+    wyvernMovesFunc()
+  }, 5000);
+});

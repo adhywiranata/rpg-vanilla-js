@@ -1,5 +1,6 @@
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/top-bar.css" rel="stylesheet" />
     <link href="css/game-bar.css" rel="stylesheet" />
@@ -76,7 +77,7 @@
 
         <div class="boss-stat">
           <span>
-            <h4>WYVERN FURY</h4>
+            <h4>WYVERNOS</h4>
             <div id="wyvern-hp-bar" class="boss-hp-bar"></div>
             <span>
               <span id="wyvern-hp"></span>
@@ -93,28 +94,91 @@
       <div id="game-menu-bar">
         <div id="megumin-menu" class="menu-actions">
           <h3>Megumin</h3>
-          <button id="action-explosion">Explosion (Medium)</button>
-          <button id="action-mega-blast">Mega Blast (Slow)</button>
+          <button id="action-explosion">Explosion </button>
+          <button id="action-mega-blast">Mega Blast </button>
           <button id="action-mana-recharge">Mana Recharge (1 Time)</button>
         </div>
 
         <div id="aqua-menu" class="menu-actions">
           <h3>Aqua</h3>
-          <button id="action-smack">Smack (Fast)</button>
-          <button id="action-heal">Heal (Slow)</button>
+          <button id="action-smack">Smack </button>
+          <button id="action-heal">Heal </button>
           <button id="action-salvation">Salvation (1 Time)</button>
         </div>
 
         <div id="aqua-menu" class="menu-actions">
           <h3>Kazuma</h3>
-          <button id="action-stab">Stab (Fast)</button>
-          <button id="action-steal" class="action-run-out">Steal HP (Medium)</button>
+          <button id="action-stab">Stab </button>
+          <button id="action-steal" class="action-run-out">Steal HP</button>
           <button id="action-dakunes-shield">Dakunes' Shield (1 Time)</button>
         </div>
       </div>
     </div>
 
-    <audio autoplay loop>
+
+    <div id="tutorial-screen">
+    </div>
+    <div id="tutorial-real-screen">
+      <div id="tutorial-scrollable">
+        <h1>Fantasy World: The Dark King</h1>
+        <p>Lagendia is a prosperous and peaceful kingdom. But one day, wyverns came in and ruin the kingdom. It is up to three brave adventurers to stop the wyverns' attacks. </p>
+        <p>
+          Your Goal is to Defeat the <b>Wyvernos, the King of Wyverns.</b>
+          <br/>
+          <img src="assets/images/wyvern.png" width="300px;" style="margin: 20px;"/>
+        </p>
+        <p style="width: 100% !important;">
+          <img src="assets/images/megumin-thumb.png" width="100px;" style="float: left; margin: 20px; border: 1px solid rgba(0,0,0, .3); border-radius: 20px;"/>
+
+          <img src="assets/images/aqua-thumb.png" width="100px;" style="float: left; margin: 20px; border: 1px solid rgba(0,0,0, .3); border-radius: 20px;"/>
+
+          <img src="assets/images/kazuma-thumb.png" width="100px;" style="float: left; margin: 20px; border: 1px solid rgba(0,0,0, .3); border-radius: 20px;"/>
+        </p>
+        <br/><br/><br/><br/><br/>
+        <p>
+          You have three person on your party:
+          <ul>
+            <li>
+              Megumin, the archmage who specializes in explosion magic
+              <h4>Megumin Skills</h4>
+              <ul>
+                <li>Explosion: Deal heavy damage to the enemy</li>
+                <li>Mega Blast: Deal insane damage to the enemy</li>
+                <li>Mana Recharge: Awaken all skills, ignore its cooldowns</li>
+              </ul>
+              <br/>
+            </li>
+            <li>
+              Aqua, the archpriest who specializes in healing magic
+              <h4>Aqua Skills</h4>
+              <ul>
+                <li>Smash: Deal small damage to the enemy</li>
+                <li>Heal: Heal small amount of HP to party (also revives dead member)</li>
+                <li>Salvation: Fully heal HP of the party</li>
+              </ul>
+              <br/>
+            </li>
+            <li>
+              Kazuma, the thief who specializes in melee and Life Drain
+              <h4>Kazuma Skills</h4>
+              <ul>
+                <li>Stab: Deal moderate damage to the enemy</li>
+                <li>Heal: Deal moderate damage to the enemy and heal himself</li>
+                <li>Dakunes' Shield: All party members cannot be damaged for 10 seconds</li>
+              </ul>
+            </li>
+          </ul>
+        </p>
+
+        <button id="play-game" class="playButton">Start</button>
+      </div>
+    </div>
+
+    <audio id="intro-bgm" autoplay loop>
+      <source src="assets/sounds/320-reviving-hollow-bastion.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="battle-bgm" loop>
       <source src="assets/sounds/524-sinister-shadows.mp3" type="audio/mp3">
     </audio>
 
