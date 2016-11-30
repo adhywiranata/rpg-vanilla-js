@@ -5,15 +5,32 @@ var wyvernHpBar = document.getElementById('wyvern-hp-bar');
 var wyvernObj = {
   hp: gameConfig.wyvernMaxHp,
   maxHp: gameConfig.wyvernMaxHp,
+  defense: gameConfig.wyvernDefense,
+  speed: gameConfig.wyvernSpeed,
   hpBar: 250,
   fullHpBar: 250,
   damageModifier: {
     darkClaw: 100,
+    wingFlap: 50,
+  },
+  actionMove: {
+    darkClaw: 'Dark Claw',
+    wingFlap: 'Wing Flap',
   },
   dealDamage: function(damage) {
+    // amount of damage inflicted
+
+    damage = damage / this.defense;
     this.hp = this.hp - damage;
     if(this.hp <= 0) {
       this.hp = 0;
+    }
+    // TRANSFORM
+    if(this.hp < (this.maxHp / 2)) {
+      document.getElementById('notification-window').innerHTML = 'Wyvern\'s is now on rage mode. Wyvern now has bigger defense and damage!';
+      document.getElementById('wyvern-char').style.zoom = 1;
+      this.speed = 2;
+      this.defense = 2;
     }
     wyvernHp.innerHTML = this.hp;
 
@@ -35,6 +52,7 @@ wyvernObj.dealDamage(0);
 var kazumaHp    = document.getElementById('kazuma-hp');
 var kazumaMaxHp = document.getElementById('kazuma-max-hp');
 var kazumaHpBar = document.getElementById('kazuma-hp-bar');
+var kazumaThumb = document.getElementById('kazuma-thumb');
 
 var kazumaObj = {
   hp: gameConfig.kazumaMaxHp,
@@ -43,6 +61,9 @@ var kazumaObj = {
   fullHpBar: 150,
   dealDamage: function(damage) {
     this.hp = this.hp - damage;
+    if(this.hp >= gameConfig.kazumaMaxHp) {
+      this.hp = gameConfig.kazumaMaxHp;
+    }
     if(this.hp <= 0) {
       this.hp = 0;
       kazumaHp.style.color = '#D91E18';
@@ -54,12 +75,20 @@ var kazumaObj = {
 
     var damagePercentage = damage / this.maxHp;
     this.hpBar = this.hpBar - (damagePercentage * this.fullHpBar);
+
+    if(this.hpBar >= this.fullHpBar) {
+      this.hpBar = this.fullHpBar;
+    }
     if(this.hpBar < (this.fullHpBar / 2)) {
       kazumaHpBar.style.background = '#F7CA18';
     }
-    if(this.hpBar < (this.fullHpBar / 3)) {
+    else if(this.hpBar < (this.fullHpBar / 3)) {
       kazumaHpBar.style.background = '#D91E18';
     }
+    else {
+      kazumaHpBar.style.background = '#3FC380';
+    }
+
     kazumaHpBar.style.width = this.hpBar + 'px';
   }
 }
@@ -70,6 +99,7 @@ kazumaObj.dealDamage(0);
 var aquaHp    = document.getElementById('aqua-hp');
 var aquaMaxHp = document.getElementById('aqua-max-hp');
 var aquaHpBar = document.getElementById('aqua-hp-bar');
+var aquaThumb = document.getElementById('aqua-thumb');
 
 var aquaObj = {
   hp: gameConfig.aquaMaxHp,
@@ -78,6 +108,9 @@ var aquaObj = {
   fullHpBar: 150,
   dealDamage: function(damage) {
     this.hp = this.hp - damage;
+    if(this.hp >= gameConfig.aquaMaxHp) {
+      this.hp = gameConfig.aquaMaxHp;
+    }
     if(this.hp <= 0) {
       this.hp = 0;
       aquaHp.style.color = '#D91E18';
@@ -89,11 +122,18 @@ var aquaObj = {
 
     var damagePercentage = damage / this.maxHp;
     this.hpBar = this.hpBar - (damagePercentage * this.fullHpBar);
+
+    if(this.hpBar >= this.fullHpBar) {
+      this.hpBar = this.fullHpBar;
+    }
     if(this.hpBar < (this.fullHpBar / 2)) {
       aquaHpBar.style.background = '#F7CA18';
     }
-    if(this.hpBar < (this.fullHpBar / 3)) {
+    else if(this.hpBar < (this.fullHpBar / 3)) {
       aquaHpBar.style.background = '#D91E18';
+    }
+    else {
+      aquaHpBar.style.background = '#3FC380';
     }
     aquaHpBar.style.width = this.hpBar + 'px';
   }
@@ -114,6 +154,9 @@ var meguminObj = {
   fullHpBar: 150,
   dealDamage: function(damage) {
     this.hp = this.hp - damage;
+    if(this.hp >= gameConfig.meguminMaxHp) {
+      this.hp = gameConfig.meguminMaxHp;
+    }
     if(this.hp <= 0) {
       this.hp = 0;
       meguminHp.style.color = '#D91E18';
@@ -125,11 +168,18 @@ var meguminObj = {
 
     var damagePercentage = damage / this.maxHp;
     this.hpBar = this.hpBar - (damagePercentage * this.fullHpBar);
+
+    if(this.hpBar >= this.fullHpBar) {
+      this.hpBar = this.fullHpBar;
+    }
     if(this.hpBar < (this.fullHpBar / 2)) {
       meguminHpBar.style.background = '#F7CA18';
     }
-    if(this.hpBar < (this.fullHpBar / 3)) {
+    else if(this.hpBar < (this.fullHpBar / 3)) {
       meguminHpBar.style.background = '#D91E18';
+    }
+    else {
+      meguminHpBar.style.background = '#3FC380';
     }
     meguminHpBar.style.width = this.hpBar + 'px';
   }

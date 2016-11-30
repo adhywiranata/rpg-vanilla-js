@@ -50,3 +50,14 @@
   position: fixed;
   right: 0;
 }
+
+#notification-window {
+  position: fixed;
+  background: rgba(0, 0, 0, .5);
+  color: white;
+  width: 80%;
+  height: 20px;
+  left: 10%;
+  top: 100px;
+  padding: 10px 20px;
+}
