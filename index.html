@@ -4,10 +4,17 @@
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/top-bar.css" rel="stylesheet" />
     <link href="css/game-bar.css" rel="stylesheet" />
+    <script>
+
+      function loadGame() {
+        document.getElementById('main-screen').style.display = 'none';
+        document.getElementById('game-screen').style.display = 'block';
+      }
+    </script>
   </head>
-  <body>
+  <body onload="loadGame()">
     <div id="main-screen">
-      <img id="megumin" src="assets/images/megumiin.png" />
+      LOADING....
     </div>
     <div id="game-screen">
 
