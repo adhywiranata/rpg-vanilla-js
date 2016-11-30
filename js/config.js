@@ -11,8 +11,8 @@ var damageConfig = {
   wyvern: {
     darkClaw: 100,
     wingFlap: 50,
-    blackMiasma: 10,
-    ancientHellfire: 50,
+    blackMiasma: 20,
+    ancientHellfire: 80,
   },
   kazuma: {
     stab: 150,

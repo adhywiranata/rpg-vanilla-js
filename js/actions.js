@@ -395,9 +395,6 @@ function wyvernMovesFunc() {
         attackToAll = true;
         actionStabBtn.disabled = true;
         actionSmackBtn.disabled = true;
-        actionExplosionBtn.disabled = true;
-        actionMegaBlastBtn.disabled = true;
-        actionHealBtn.disabled = true;
         actionStealBtn.disabled = true;
         break;
       case 4:
